@@ -75,11 +75,66 @@ function validatePhoneNumber(phoneNumber) {
 	validateNonformattedNumber();
 }
 
-const PASSWORD_CATEGORIES = {
+function validatePassword(password) {
+	if (!password) {
+		throw new ValidationError('Password cannot be empty');
+	}
+	if (password.length < 6) {
+		throw new ValidationError('Password length too short');
+	}
+}
+
+function validateConfirmPassword(password) {
+	const currentPassword = document.getElementsByClassName('signup__field__inputs__input--password')[0].value;
+	if (password && password !== currentPassword) {
+		throw new ValidationError('Password did not match');
+	}
+}
+
+const PasswordCategories = {
 	GOOD: 'password_good',
 	FAIR: 'password_fair',
-	WEAK: 'password_weak',
+	WEAK: 'password_weak'
+  }
+
+class Guide {
+	constructor({
+		className,
+		getGuidanceMessage
+	}) {
+		this.htmlNode = document.getElementsByClassName(className)[0];
+		this.getGuidanceMessage = getGuidanceMessage;
+	}
+
+	hide() {
+		this.htmlNode.style.display = 'none';
+	}
+
+	show() {
+		this.htmlNode.style.display = 'block';
+	}
+
+	update(val) {
+		this.htmlNode.innerHTML = this.getGuidanceMessage(val);
+	}
 }
+
+
+const passwordGuide = new Guide({
+	className: 'signup__field__guide--password',
+	getGuidanceMessage: (val) => {
+		switch (getPasswordCategory(val)) {
+			case (PasswordCategories.GOOD):
+				return 'This password works!';
+			case (PasswordCategories.FAIR):
+				return 'A good password uses a mix of numbers and letters.';
+			case (PasswordCategories.WEAK):
+				return 'Try a longer password.';
+		}
+		return '';
+	}
+});
+
 
 function getPasswordCategory(password) {
 	const hasLettersRegex = /[a-zA-Z]+/
@@ -97,18 +152,20 @@ function getPasswordCategory(password) {
 	}
 
 	if (isGoodPassword()) {
-		return PASSWORD_CATEGORIES.GOOD;
+		return PasswordCategories.GOOD;
 	}
 	if (isFairPassword()) {
-		return PASSWORD_CATEGORIES.FAIR;
+		return PasswordCategories.FAIR;
 	}
-	return PASSWORD_CATEGORIES.WEAK;
+	return PasswordCategories.WEAK;
 }
 
 const validationMapping = {
 	'name': validateName,
 	'email': validateEmail,
 	'username': validateUsername,
+	'password': validatePassword,
+	'confirmPassword': validateConfirmPassword,
 	'day': validateDay,
 	'year': validateYear,
 	'phoneNumber': validatePhoneNumber
@@ -119,9 +176,10 @@ function validate(event) {
 	const inputElement = event.target;
 	const field = inputElement.dataset.field;
 	if (field === 'password') {
-		return;
+		const confirmPassword = document.getElementsByClassName('signup__field__inputs__input--confirm-password')[0];
+		validate(confirmPassword);
 	}
-	const errorMessageElement = event.target.parentElement.getElementsByClassName('signup__field__error')[0];
+	const errorMessageElement = event.target.parentElement.parentElement.getElementsByClassName('signup__field__error')[0];
 	try {
 		validationMapping[field](inputElement.value);
 		errorMessageElement.innerHTML = '';
@@ -135,8 +193,8 @@ function validate(event) {
 	}
 }
 
-const inputs = document.getElementsByClassName('signup__field__input');
+const inputs = document.getElementsByClassName('signup__field__inputs__input');
 
 for (const input of inputs) {
-	input.onblur = validate;
+	input.onblur = (event) => validate(event.target);
 }
