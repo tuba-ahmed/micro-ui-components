@@ -2,12 +2,11 @@ import {
 	ValidationError,
 	validateName,
 	validateUsername,
-	validateDay,
-	validateYear,
 	validateEmail,
 	validatePassword,
 	validateConfirmPassword,
-	validatePhoneNumber
+	validatePhoneNumber,
+	restrict
 } from './validation.js';
 import {
 	showGuide,
@@ -21,8 +20,6 @@ const validationMapping = {
 	'username': validateUsername,
 	'password': validatePassword,
 	'confirmPassword': validateConfirmPassword,
-	'day': validateDay,
-	'year': validateYear,
 	'phoneNumber': validatePhoneNumber
 }
 
@@ -59,4 +56,5 @@ for (const input of inputs) {
 	}
 	input.onfocus = (event) => showGuide(event.target);
 	input.onkeyup = (event) => updateGuide(event.target);
+	input.onkeydown = restrict;
 }

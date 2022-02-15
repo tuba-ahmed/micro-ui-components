@@ -19,20 +19,6 @@ function validateUsername(username) {
 	}
 }
 
-function validateDay(day) {
-	const birthdayRegex = /^[0-9]{2}$/;
-	if (!birthdayRegex.test(day)) {
-		throw new ValidationError('Please enter a valid Birthday.');
-	}
-}
-
-function validateYear(year) {
-	const birthYearRegex = /^[0-9]{4}$/;
-	if (!birthYearRegex.test(year)) {
-		throw new ValidationError('Please enter a valid Birthyear.');
-	}
-}
-
 function validateEmail(email) {
 	const emailRegex = /^[a-zA-Z0-9]{1}[a-zA-Z0-9@._-]+[a-zA-Z]$/;
 	if (!emailRegex.test(email)) {
@@ -91,12 +77,11 @@ function validateConfirmPassword(password) {
 	}
 }
 
+
 export {
 	ValidationError,
 	validateName,
 	validateUsername,
-	validateDay,
-	validateYear,
 	validateEmail,
 	validatePassword,
 	validateConfirmPassword,
