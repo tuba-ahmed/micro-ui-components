@@ -10,7 +10,7 @@ body {
 .wrapper {
   background: var(--light-grey);
   padding: 1rem;
-  width: 20rem;
+  width: 30rem;
   margin: 0 auto;
 }
 
@@ -28,10 +28,17 @@ body {
   flex-direction: row;
 }
 
+.signup__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .signup__field__inputs__input {
   flex-grow: 1;
   flex-shrink: 1;
   width: 2rem;
+  height: 1.2rem;
   background: white;
   border: 1px solid grey;
   padding: 0.2rem;
@@ -51,4 +58,14 @@ body {
   color: var(--error-red);
   font-size: 13px;
   margin-top: 0.5rem;
+}
+
+.signup__field__inputs__input:hover {
+	border: 1px solid var(--border-grey);
+}
+
+.signup__field__inputs__input:focus {
+	box-shadow: 1px 1px 4px #D0D0D0 inset;
+	border: 1px solid var(--border-grey);
+	outline: none;
 }

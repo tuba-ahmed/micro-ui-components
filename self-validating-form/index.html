@@ -5,26 +5,26 @@
 </head>
 <body>
   <div class="wrapper">
-    <form class="signup">
+    <form class="signup" id="signup-wrapper">
       <fieldset class="signup__field signup__field--name">
         <legend class="signup__field__header">Name</legend>
         <div class="signup__field__inputs">
-          <input type="text" class="signup__field__inputs__input signup__field__inputs__input--name" data-field="name" placeholder="First" aria-label="First Name" />
-          <input type="text" class="signup__field__inputs__input signup__field__inputs__input--name" data-field="name" placeholder="Last" aria-label="Last Name" />
+          <input name="firstName" type="text" class="signup__field__inputs__input signup__field__inputs__input--name" data-field="name" placeholder="First" aria-label="First Name" />
+          <input name="lastName" type="text" class="signup__field__inputs__input signup__field__inputs__input--name" data-field="name" placeholder="Last" aria-label="Last Name" />
         </div>
         <div class="signup__field__error"></div>
       </fieldset>
       <fieldset class="signup__field signup__field--username">
         <legend class="signup__field__header">Choose your username</legend>
         <div class="signup__field__inputs">
-          <input type="text" class="signup__field__inputs__input signup__field__inputs__input--username" data-field="username" aria-label="Username" />
+          <input name="username" type="text" class="signup__field__inputs__input signup__field__inputs__input--username" data-field="username" aria-label="Username" />
         </div>
         <div class="signup__field__error"></div>
       </fieldset>
       <fieldset class="signup__field signup__field--password">
         <legend class="signup__field__header">Create a password</legend>
         <div class="signup__field__inputs">
-          <input type="password" class="signup__field__inputs__input signup__field__inputs__input--password" data-field="password" aria-label="Password" />
+          <input name="password" type="password" class="signup__field__inputs__input signup__field__inputs__input--password" data-field="password" aria-label="Password" />
         </div>
         <div class="signup__field__guide signup__field__guide--password"></div>
         <div class="signup__field__error"></div>
@@ -32,25 +32,31 @@
       <fieldset class="signup__field signup__field--confirm-password">
         <legend class="signup__field__header">Confirm your password</legend>
         <div class="signup__field__inputs">
-          <input type="password" class="signup__field__inputs__input signup__field__inputs__input--confirm-password" data-field="confirmPassword" aria-label="Confirm Password" />
+          <input name="confirmPassword" type="password" class="signup__field__inputs__input signup__field__inputs__input--confirm-password" data-field="confirmPassword" aria-label="Confirm Password" />
         </div>
         <div class="signup__field__error"></div>
       </fieldset>
       <fieldset class="signup__field signup__field--phone">
         <legend class="signup__field__header">Mobile phone</legend>
         <div class="signup__field__inputs">
-          <input type="text" class="signup__field__inputs__input signup__field__inputs__input--phone" data-field="phoneNumber" aria-label="Phone" />
+          <input type="text" name="phone" class="signup__field__inputs__input signup__field__inputs__input--phone" data-field="phoneNumber" aria-label="Phone" />
         </div>
         <div class="signup__field__error"></div>
       </fieldset>
       <fieldset class="signup__field signup__field--current-email">
         <legend class="signup__field__header">Your current email address</legend>
         <div class="signup__field__inputs">
-          <input type="text" class="signup__field__inputs__input signup__field__inputs__input--current-email" data-field="email" aria-label="Email" />
+          <input name="email" type="text" class="signup__field__inputs__input signup__field__inputs__input--current-email" data-field="email" aria-label="Email" />
         </div>
         <div class="signup__field__error"></div>
       </fieldset>
+      <div class="signup__button">
+        <button type="submit" id="signup-button">Signup</button>
+      </div>
     </form>
+    <div id="landing-page-wrapper">
+      <div class="signup__field__header"></div>
+    </div>
   </div>
   <script type="module" src="./index.js"></script>
 </body>

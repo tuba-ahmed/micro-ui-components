@@ -5,8 +5,7 @@ import {
 	validateEmail,
 	validatePassword,
 	validateConfirmPassword,
-	validatePhoneNumber,
-	restrict
+	validatePhoneNumber
 } from './validation.js';
 import {
 	showGuide,
@@ -56,5 +55,33 @@ for (const input of inputs) {
 	}
 	input.onfocus = (event) => showGuide(event.target);
 	input.onkeyup = (event) => updateGuide(event.target);
-	input.onkeydown = restrict;
+}
+
+let signupForm = document.getElementById("signup-wrapper");
+signupForm.addEventListener('submit', (event) => {
+	event.preventDefault();
+	const formElement = document.forms['signup-wrapper'];
+	const formData = new FormData(formElement);
+	let username = formData.get('username');
+	window.sessionStorage.setItem('username', username);
+	toggleContent();
+});
+
+toggleContent();
+
+//toggling content
+function toggleContent() {
+	const username = window.sessionStorage.getItem('username');
+	let signupWrapper = document.getElementById('signup-wrapper');
+	let landingPageWrapper = document.getElementById('landing-page-wrapper');
+	if (username) {
+		signupWrapper.style.display = 'none';
+		let landingPageWelcomeMsg = landingPageWrapper.getElementsByClassName('signup__field__header')[0];
+		if (landingPageWelcomeMsg) {
+			landingPageWelcomeMsg.innerText = "Hi There " + window.sessionStorage.getItem('username') + "! Welcome to Local COVID Statistics Application.";
+		}
+	}
+	else {
+		landingPageWrapper.style.display = 'none';
+	}
 }
