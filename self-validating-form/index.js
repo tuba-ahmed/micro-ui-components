@@ -12,7 +12,9 @@ import {
 	hideGuide,
 	updateGuide
 } from './passwordguide.js';
-
+import {
+	getLocalCovidStats
+} from './localcovidstats.js'
 const validationMapping = {
 	'name': validateName,
 	'email': validateEmail,
@@ -59,7 +61,6 @@ for (const input of inputs) {
 
 let signupForm = document.getElementById("signup-wrapper");
 signupForm.addEventListener('submit', (event) => {
-	event.preventDefault();
 	const formElement = document.forms['signup-wrapper'];
 	const formData = new FormData(formElement);
 	let username = formData.get('username');
@@ -78,10 +79,13 @@ function toggleContent() {
 		signupWrapper.style.display = 'none';
 		let landingPageWelcomeMsg = landingPageWrapper.getElementsByClassName('signup__field__header')[0];
 		if (landingPageWelcomeMsg) {
-			landingPageWelcomeMsg.innerText = "Hi There " + window.sessionStorage.getItem('username') + "! Welcome to Local COVID Statistics Application.";
+			landingPageWelcomeMsg.innerText = "Hi There " + window.sessionStorage.getItem('username') + "! Welcome to the local weather app.";
 		}
 	}
 	else {
 		landingPageWrapper.style.display = 'none';
 	}
 }
+
+
+document.getElementById('get-local-covid-stats').addEventListener('click', getLocalCovidStats);
