@@ -13,8 +13,8 @@ import {
 	updateGuide
 } from './passwordguide.js';
 import {
-	getLocalCovidStats
-} from './localcovidstats.js'
+	gtLocalWeatherStats
+} from './localweather.js'
 const validationMapping = {
 	'name': validateName,
 	'email': validateEmail,
@@ -88,4 +88,4 @@ function toggleContent() {
 }
 
 
-document.getElementById('get-local-covid-stats').addEventListener('click', getLocalCovidStats);
+document.getElementById('get-local-weather-stats').addEventListener('click', gtLocalWeatherStats);

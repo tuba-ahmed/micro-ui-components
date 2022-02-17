@@ -1,4 +1,4 @@
-export function getLocalCovidStats() {
+export function gtLocalWeatherStats() {
     let status = document.getElementById('status');
   
     function success(position) {
@@ -12,7 +12,7 @@ export function getLocalCovidStats() {
     }
   
     function error() {
-      status.textContent = 'Unable to retrieve your local COVID-19 statistics';
+      status.textContent = 'Unable to retrieve your local Weather and Pollution statistics';
     }
   
     if(!navigator.geolocation) {
