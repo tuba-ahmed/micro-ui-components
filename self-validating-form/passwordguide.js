@@ -31,12 +31,12 @@ const passwordGuide = new Guide({
 	className: 'signup__field__guide--password',
 	getGuidanceMessage: (val) => {
 		switch (getPasswordCategory(val)) {
-			case (PasswordCategories.GOOD):
-				return 'This password works!';
-			case (PasswordCategories.FAIR):
-				return 'A good password uses a mix of numbers and letters.';
-			case (PasswordCategories.WEAK):
-				return 'Try a longer password.';
+		case (PasswordCategories.GOOD):
+			return 'This password works!';
+		case (PasswordCategories.FAIR):
+			return 'A good password uses a mix of numbers and letters.';
+		case (PasswordCategories.WEAK):
+			return 'Try a longer password.';
 		}
 		return '';
 	}

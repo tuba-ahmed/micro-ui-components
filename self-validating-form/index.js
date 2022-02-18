@@ -81,8 +81,7 @@ function toggleContent() {
 		if (landingPageWelcomeMsg) {
 			landingPageWelcomeMsg.innerText = "Hi There " + window.sessionStorage.getItem('username') + "! Welcome to the local weather app.";
 		}
-	}
-	else {
+	} else {
 		landingPageWrapper.style.display = 'none';
 	}
 }
